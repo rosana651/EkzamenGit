@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import { HiOutlineMenuAlt4 } from "react-icons/hi"
 import { PiHandbagThin } from "react-icons/pi"
 import { CiSearch } from "react-icons/ci"
-import logo from '../assets/logo.png'
+import logo from '../assets/images/logo.png'
 
 const currencies = [
   { code: 'EUR', symbol: '€', region: 'Europe €' },
@@ -29,18 +29,20 @@ const NavBar = () => {
   }, [])
 
   return (
-    <div className='w-full h-24 flex items-center justify-between px-4 text-gray-700'>
+    <div className='w-full h-24 flex items-center justify-between px-6 text-gray-700'>
 
-      <div className='flex items-center gap-2 cursor-pointer'>
+      <div className='flex items-center gap-2 cursor-pointer w-1/3'>
         <HiOutlineMenuAlt4 size={22} />
         <span className='text-sm font-medium tracking-widest'>MENU</span>
       </div>
 
-      <div>
-        <img src={logo} alt="logo" className='h-20 w-20' />
+      {/* w-1/3 + justify-center логотип строго по центру */}
+      <div className='flex justify-center w-1/3'>
+        <img src={logo} alt="logo" className='h-20 w-auto' />
       </div>
 
-      <div className='flex items-center gap-4'>
+      {/* w-1/3 + justify-end иконки прижаты вправо */}
+      <div className='flex items-center justify-end gap-4 w-1/3'>
 
         {/* Relative и absolut для позиционирования dropdown меню относительно кнопки (top-full - сразу под кнопкой, right-0 - справа сверху) */}
         <div className='relative' ref={ref}>
