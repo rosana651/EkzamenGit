@@ -1,13 +1,29 @@
 import { useState } from 'react'
-import NavBar from './components/NavBar'
-import FirstSection from './components/FirstSection'
+import { BrowserRouter,Routes,Route } from 'react-router-dom';
+import NotFound from './pages/NotFound.jsx'
+import Admin from './pages/Admin.jsx'
+import NavBar from './components/NavBar.jsx';
+import Home from './pages/Home.jsx'
+import AboutUs from './pages/AboutUs.jsx';
+import Contact from './pages/Contact.jsx';
+import PageWrapper from './components/PageWrapper.jsx';
+
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
     <>
-      <NavBar />
-      <FirstSection />
+  <BrowserRouter>
+    <NavBar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<PageWrapper><AboutUs /></PageWrapper>} />
+        <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
+        <Route path="/admin" element={<PageWrapper><Admin /></PageWrapper>} />
+        <Route path="*" element={<PageWrapper><NotFound /></PageWrapper>} />
+      </Routes>
+  </BrowserRouter>
+
     </>
   )
 }

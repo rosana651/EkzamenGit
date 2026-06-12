@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { HiOutlineMenuAlt4 } from "react-icons/hi"
 import { PiHandbagThin } from "react-icons/pi"
 import { CiSearch } from "react-icons/ci"
@@ -29,7 +30,7 @@ const NavBar = () => {
   }, [])
 
   return (
-    <div className='w-full h-24 flex items-center justify-between px-6 text-gray-700'>
+    <div className='w-full fixed top-0 left-0 z-50 bg-white h-24 flex items-center justify-between px-6 text-gray-700'>
 
       <div className='flex items-center gap-2 cursor-pointer w-1/3'>
         <HiOutlineMenuAlt4 size={22} />
@@ -38,7 +39,7 @@ const NavBar = () => {
 
       {/* w-1/3 + justify-center логотип строго по центру */}
       <div className='flex justify-center w-1/3'>
-        <img src={logo} alt="logo" className='h-20 w-auto' />
+        <Link to="/"><img src={logo} alt="logo" className='h-20 w-auto transition-opacity duration-300 hover:opacity-50' /></Link>
       </div>
 
       {/* w-1/3 + justify-end иконки прижаты вправо */}
@@ -46,7 +47,7 @@ const NavBar = () => {
 
         {/* Relative и absolut для позиционирования dropdown меню относительно кнопки (top-full - сразу под кнопкой, right-0 - справа сверху) */}
         <div className='relative' ref={ref}>
-            <button onClick={() => setOpen(!open)} className='flex items-center gap-1 text-sm font-medium px-2 py-1 rounded hover:underline'>
+            <button onClick={() => setOpen(!open)} className='flex items-center gap-1 text-sm font-medium px-2 py-1 rounded hover:underline cursor-pointer'>
             {selected.symbol} {selected.code}
             <span className={`transition-transform duration-200 inline-block ${open ? 'rotate-180' : ''}`}>∧</span>
           </button>
