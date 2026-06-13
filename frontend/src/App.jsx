@@ -7,6 +7,7 @@ import Home from './pages/Home.jsx'
 import AboutUs from './pages/AboutUs.jsx';
 import Contact from './pages/Contact.jsx';
 import PageWrapper from './components/PageWrapper.jsx';
+import Footer from './components/Footer.jsx';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/admin" element={<PageWrapper><Admin /></PageWrapper>} />
         <Route path="*" element={<PageWrapper><NotFound /></PageWrapper>} />
       </Routes>
+    <Footer/>
   </BrowserRouter>
 
     </>
