@@ -1,9 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link ,NavLink } from 'react-router-dom'
 import { HiOutlineMenuAlt4 } from "react-icons/hi"
 import { PiHandbagThin } from "react-icons/pi"
 import { CiSearch } from "react-icons/ci"
+import { TfiClose } from "react-icons/tfi";
 import logo from '../assets/images/logo.png'
+import menu_bg from '../assets/images/menu_bg.png'
 
 const currencies = [
   { code: 'EUR', symbol: '€', region: 'Europe €' },
@@ -14,6 +16,7 @@ const currencies = [
 ]
 
 const NavBar = () => {
+  const [openMenu, setOpenMenu] = useState(false)
   const [open, setOpen] = useState(false)
   const [selected, setSelected] = useState(currencies[0])
   const ref = useRef(null)
@@ -30,11 +33,13 @@ const NavBar = () => {
   }, [])
 
   return (
-    <div className='w-full fixed top-0 left-0 z-50 bg-white h-24 flex items-center justify-between px-6 text-gray-700'>
+    <>
+    <div className='w-full fixed top-0 left-0 z-50 bg-white h-24 flex items-center n justify-between px-6 text-gray-700 '>
 
-      <div className='flex items-center gap-2 cursor-pointer w-1/3'>
-        <HiOutlineMenuAlt4 size={22} />
-        <span className='text-sm font-medium tracking-widest'>MENU</span>
+      <div onClick={() => setOpenMenu(!openMenu)} className='flex items-center gap-2  w-1/3'>
+        <HiOutlineMenuAlt4 size={22} className={`cursor-pointer ${openMenu ? "hidden": "block"}`}/>
+        <TfiClose size={22} className={`cursor-pointer ${openMenu ? "block": "hidden"}`}/>
+        <span className='text-sm font-medium tracking-widest cursor-pointer'>MENU</span>
       </div>
 
       {/* w-1/3 + justify-center логотип строго по центру */}
@@ -75,6 +80,30 @@ const NavBar = () => {
       </div>
 
     </div>
+
+    {/* Menu */}
+   <div className={`fixed top-0 flex flex-col gap-40 items-center justify-center left-0 w-full bg-white z-40 transition-all duration-500 ${openMenu ? 'h-full' : 'h-0 overflow-hidden '}`}>
+       <img src={menu_bg} alt="menu_bg" className='absolute right-0 h-full object-cover pointer-events-none'/>
+       <div className='flex flex-col gap-8 items-center group text-4xl tracking-[1px] font-playfair'>
+          <NavLink to="/" className={({ isActive }) => `hover:text-black  group-hover:text-[#cbc8c6] transition-all duration-400 ${isActive ? 'text-main-gold' : ''}`}>Home</NavLink>
+          <NavLink to="/about"className={({ isActive }) => `hover:text-black  group-hover:text-[#cbc8c6] transition-all duration-400 ${isActive ? 'text-main-gold' : ''}`}>Our Story</NavLink>
+          <NavLink to="/collections"className={({ isActive }) => `hover:text-black  group-hover:text-[#cbc8c6] transition-all duration-400 ${isActive ? 'text-main-gold' : ''}`}>Our Shop</NavLink>
+          <NavLink to="/contact"className={({ isActive }) => `hover:text-black  group-hover:text-[#cbc8c6] transition-all duration-400 ${isActive ? 'text-main-gold' : ''}`}>Contact Us</NavLink>
+       </div>
+
+       <div className='flex items-center gap-6 text-gray-800 tracking-[2px]'>
+           <a href="https://www.instagram.com/" target='_blank' className='relative group pb-1'>
+                INSTAGRAM
+                <div className='absolute bottom-0 left-0 h-px bg-gray-800 w-0 transition-all duration-400 group-hover:w-full' />
+            </a>
+            <a href="https://www.facebook.com/home.php" target='_blank' className='relative group pb-1'>
+                FACEBOOK
+                <div className='absolute bottom-0 left-0 h-px bg-gray-800 w-0 transition-all duration-400 group-hover:w-full' />
+            </a>
+       </div>
+
+    </div>
+    </>
   )
 }
 

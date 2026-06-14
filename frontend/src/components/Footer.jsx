@@ -107,14 +107,14 @@ const Footer = () => {
                 <ul className='text-white flex flex-col gap-2 text-sm'>
                 <li>
                     <a href="https://www.instagram.com/" target='_blank' className='relative group pb-1'>
-                    Instagram
-                    <div className='absolute bottom-0 left-0 h-px bg-white w-0 transition-all duration-400 group-hover:w-full' />
+                        Instagram
+                        <div className='absolute bottom-0 left-0 h-px bg-white w-0 transition-all duration-400 group-hover:w-full' />
                     </a>
                 </li>
                 <li>
                     <a href="https://www.facebook.com/home.php" target='_blank' className='relative group pb-1'>
-                    Facebook
-                    <div className='absolute bottom-0 left-0 h-px bg-white w-0 transition-all duration-400 group-hover:w-full' />
+                        Facebook
+                        <div className='absolute bottom-0 left-0 h-px bg-white w-0 transition-all duration-400 group-hover:w-full' />
                     </a>
                 </li>
                 </ul>

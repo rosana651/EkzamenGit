@@ -6,6 +6,7 @@ import NavBar from './components/NavBar.jsx';
 import Home from './pages/Home.jsx'
 import AboutUs from './pages/AboutUs.jsx';
 import Contact from './pages/Contact.jsx';
+import Collections from './pages/Collections.jsx';
 import PageWrapper from './components/PageWrapper.jsx';
 import Footer from './components/Footer.jsx';
 
@@ -20,6 +21,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<PageWrapper><AboutUs /></PageWrapper>} />
         <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
+        <Route path="/collections" element={<PageWrapper><Collections /></PageWrapper>} />
         <Route path="/admin" element={<PageWrapper><Admin /></PageWrapper>} />
         <Route path="*" element={<PageWrapper><NotFound /></PageWrapper>} />
       </Routes>
