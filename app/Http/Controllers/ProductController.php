@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Support\Facades\Cache;
 
 class ProductController extends Controller
 {
@@ -12,7 +13,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-       return response()->json(Product::all(), 200);
+            $products = Cache::remember('products', 3600, function () {
+            return Product::all();
+        });
+
+    return response()->json($products, 200);
     }
 
     /**
@@ -23,14 +28,18 @@ class ProductController extends Controller
     $request->validate([
         'name' => 'required|string|max:255',
         'description' => 'nullable|string|max:1000',
+        'category' => 'required|string',
         'image_url' => 'nullable|url',
     ]);
 
     $product = Product::create([
         'name' => $request->name,
         'description' => $request->description,
+        'category' => $request->category,
         'image_url' => $request->image_url
     ]);
+
+    Cache::forget('products');
 
     return response()->json($product, 201);
 }
@@ -52,14 +61,18 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string|max:1000',
+            'category' => 'required|string',
             'image_url' => 'nullable|url',
         ]);
 
         $product->update([
             'name' => $request->name,
             'description' => $request->description,
+            'category' => $request->category,
             'image_url' => $request->image_url
         ]);
+
+        Cache::forget('products');
 
          return response()->json($product,200);
     }
@@ -69,6 +82,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-         $product->delete();
+        $product->delete();
+        Cache::forget('products');
+        return response()->json(['message' => 'Product deleted'], 200);
     }
 }
