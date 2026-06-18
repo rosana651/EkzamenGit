@@ -52,7 +52,7 @@ const NavBar = () => {
 
         {/* Relative и absolut для позиционирования dropdown меню относительно кнопки (top-full - сразу под кнопкой, right-0 - справа сверху) */}
         <div className='relative' ref={ref}>
-            <button onClick={() => setOpen(!open)} className='flex items-center gap-1 text-sm font-medium px-2 py-1 rounded hover:underline cursor-pointer'>
+          <button onClick={() => setOpen(!open)} className='flex items-center gap-1 text-sm font-medium px-2 py-1 rounded hover:underline cursor-pointer'>
             {selected.symbol} {selected.code}
             <span className={`transition-transform duration-200 inline-block ${open ? 'rotate-180' : ''}`}>∧</span>
           </button>
