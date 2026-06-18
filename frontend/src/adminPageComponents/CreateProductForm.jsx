@@ -7,7 +7,8 @@ const CreateProductForm = () => {
     name: '',
     description: '',
     category: '',
-    image_url: ''
+    image_url: '',
+    image_url_hover: '',
   })
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState(null)
@@ -24,7 +25,7 @@ const CreateProductForm = () => {
     setLoading(true)
 
     try {
-      const response = await fetch('http://localhost/api/products', {
+      const response = await fetch('/api/products', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
@@ -106,10 +107,29 @@ const CreateProductForm = () => {
           />
         </div>
 
+        <div className='flex flex-col gap-1'>
+          <label className='text-xs tracking-widest text-gray-500'>IMAGE URL HOVER</label>
+          <input
+            type='text'
+            name='image_url_hover'
+            value={formData.image_url_hover}
+            onChange={handleChange}
+            className='border border-gray-200 rounded-lg px-4 py-3 text-sm outline-none focus:border-gray-400 transition-all'
+            placeholder='https://example.com/image.jpg'
+          />
+        </div>
+
         {formData.image_url && (
           <div className='flex flex-col gap-1'>
-            <label className='text-xs tracking-widest text-gray-500'>PREVIEW</label>
+            <label className='text-xs tracking-widest text-gray-500'>IMG PREVIEW</label>
             <img src={formData.image_url} alt='preview' className='w-full h-48 object-cover rounded-lg' />
+          </div>
+        )}
+
+        {formData.image_url_hover && (
+          <div className='flex flex-col gap-1'>
+            <label className='text-xs tracking-widest text-gray-500'>HOVER PREVIEW</label>
+            <img src={formData.image_url_hover} alt='preview' className='w-full h-48 object-cover rounded-lg' />
           </div>
         )}
 

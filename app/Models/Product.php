@@ -11,6 +11,7 @@ class Product extends Model
         'description',
         'category',
         'image_url',
+        'image_url_hover',
     ];
 
     public function productVariants()
