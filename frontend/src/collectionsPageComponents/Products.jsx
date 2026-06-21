@@ -80,6 +80,7 @@ const Products = () => {
           </div>    
       </div>
 
+            <h2>FROM THE SEA</h2>
       
 
        
